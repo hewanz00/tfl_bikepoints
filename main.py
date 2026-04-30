@@ -8,8 +8,8 @@ from datetime import datetime
 
 #variables
 url = 'https://api.tfl.gov.uk/BikePoint'
-response = requests.get(url) #reading from web; imports as string(?)
-data = response.json() #transforms to json
+response = requests.get(url) #reading from web; imports as json string
+data = response.json() #transforms from json to pyth dic/list
 
 
 if response.status_code == 200: 
@@ -22,8 +22,8 @@ if response.status_code == 200:
         id = dock_id.get("id")
         filename = f"bikepoint_data/{id}.json"
         no_docks = len(data)
-        with open(filename, "w") as file:
-            json.dump(dock_id, file)
+        with open(filename, "w") as file: #writes (saves) file
+            json.dump(dock_id, file) #transforms back to json
     
     print(f"Yay!! {no_docks} files are in the bikepoint_data folder! :)" )
     
